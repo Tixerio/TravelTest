@@ -1,6 +1,6 @@
 export const theme = {
     textWhite: '#FFFFFF',
-    backgroundDarkBlue: '#FAEFE6',
-    backgroundLightBlue: '#D2DBEA',
+    backgroundDarkBlue: '#D2DBEA',
+    backgroundLightBlue: '#F2F5FA',
     casualButton: "#18C0C1",
 }
