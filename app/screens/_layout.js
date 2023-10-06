@@ -11,14 +11,14 @@ export default function AboutLayout() {
         headerTransparent: true,
         
         headerStyle:{
-          height:200,            // i tried to put height
+          height:200,         
           backgroundColor: 'red'
         }
     }}/>
     <Stack.Screen name="Profile" options={{
       title: null,
         headerStyle:{
-                    // i tried to put height
+          headerTransparent: true,
         }
     }}/>
   </Stack>;

@@ -1,8 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { Pressable, StyleSheet, Text, View, Button } from 'react-native';
 import { Link} from 'expo-router';
-import { theme } from '../../theme/theme.js';
-
+import { theme } from '../theme/theme.js';
 
 export default function About() {
   return (
