@@ -7,6 +7,9 @@ export default function AboutLayout() {
     <Stack.Screen name="Home" options={{
         headerShown: false
     }} />
+    <Stack.Screen name="Profile" options={{
+        headerShown: false
+    }} />
     <Stack.Screen name="About" options={{
         headerTransparent: true,
         
@@ -15,12 +18,7 @@ export default function AboutLayout() {
           backgroundColor: 'red'
         }
     }}/>
-    <Stack.Screen name="Profile" options={{
-      title: null,
-        headerStyle:{
-          headerTransparent: true,
-        }
-    }}/>
+
   </Stack>;
   
 }

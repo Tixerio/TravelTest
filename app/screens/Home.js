@@ -1,4 +1,4 @@
-import { Pressable, StyleSheet, Text, View, Button, ScrollView, TouchableOpacity, Image, TextInput, Touchable, TouchableOpacityBase, KeyboardAvoidingView } from 'react-native';
+import { Pressable, StyleSheet, Text, View, Button, ScrollView, TouchableOpacity, Image, TextInput, KeyboardAvoidingView, Platform  } from 'react-native';
 import { Link, Stack } from 'expo-router';
 import { theme } from '../theme/theme.js';
 import { getUserData } from '../utils/apiFunctions.js';
@@ -9,6 +9,7 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import { Calendar } from 'react-native-calendars';
 import { useState } from 'react';
 const { parseISO } = require('date-fns')
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 //platzhalter für später, soll user daten simulieren.
 const user = getUserData()
@@ -51,9 +52,7 @@ export default function Home() {
   };
    
   return (
-
-      <ScrollView contentContainerStyle={styles.container}> 
-        <StatusBar translucent={true} backgroundColor="transparent" />
+      <ScrollView contentContainerStyle={styles.container} > 
         <View style={styles.topContainer}>
           <Link href="screens/Profile" asChild>
             <TouchableOpacity style={styles.profileButton}>
@@ -88,16 +87,12 @@ export default function Home() {
               placeholderTextColor="black"
             />
           </TouchableOpacity>
-     
-
           {isCalendarVisible && (
             <Calendar
               onDayPress={(day) => handleDateSelect(day)}
               // Customize the appearance of the calendar here if needed
             />
-          )}
-
-          
+          )}     
           <View style={ styles.guestsInputView }>
             <TextInput 
               style={{ fontSize: 18, color: "black"}}
@@ -117,6 +112,7 @@ export default function Home() {
             </View>
 
           </View>
+          
         </View>
         <View>
           <TouchableOpacity style={styles.button} onPress={filterHotels}>
@@ -127,11 +123,17 @@ export default function Home() {
           <Text>
             {hotelList}
           </Text>
+         
         </View>
-   
- {/*      <View style={styles.bottomContainer}>
-        
-      </View> */}
+        <View style={styles.bottomContainer}>
+        <TouchableOpacity style={styles.mainButtonLeft}>
+          <FontAwesome5 name="home" size={24} color="#45cfb2" /> 
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.mainButtonRight}>
+          <FontAwesome5 name="user" size={24} color="black" />
+        </TouchableOpacity>
+        </View> 
+     
     </ScrollView> 
   );
 }
@@ -152,15 +154,14 @@ const styles = StyleSheet.create({
     padding: 20,  
   },
   bottomContainer: {
-
+    flex: 1,
+    alignItems: "flex-end", // Center the content horizontally
+    justifyContent: 'center', // Push the content to the bottom of the screen
+    marginBottom: 0, // Adjust the margin as needed
     backgroundColor: theme.backgroundDarkBlue,
-    height: 400,
     borderTopLeftRadius: 40,
     borderTopRightRadius: 40,
-    position: 'absolute', // Use absolute positioning for the bottomContainer
-    bottom: 0, // Position it at the bottom
-    left: 0, // Align it with the left edge of the container
-    right: 0, // Align it with the right edge of the container
+    flexDirection: "row"
   },
   guestsInputView: {
     flexDirection: 'row',
@@ -230,4 +231,17 @@ const styles = StyleSheet.create({
     marginLeft: 25,
     padding: 10
   },
+  mainButtonLeft: {
+    marginRight: 70,
+    borderWidth: 1,
+    padding: 7,
+    marginBottom: 40,
+    borderRadius: 40,
+    backgroundColor: "white"
+  },
+  mainButtonRight: {
+
+    padding: 7,
+    marginBottom: 40,
+  }
 });
